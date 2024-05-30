@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Talking to the outside world</title>
+  </head>
+  <body style="font-family: cursive">
+    <h1>Talking to the outside world</h1>
+    <p>
+      <button>Get Random Image</button>
+    </p>
+    <img src="" style="width: 500px" />
+  </body>
+  <script>
+    const image = document.querySelector("img");
+    const button = document.querySelector("button");
+
+    button.addEventListener("click", () => {
+      const xhr = new XMLHttpRequest();
+      xhr.responseType = "json";
+      //   xhr.addEventListener('load',()=>{
+      //     image.src = xhr.response.message;
+      //   })
+
+      xhr.onload = () => {
+        image.src = xhr.response.message;
+      };
+
+      xhr.open("GET", "https://dog.ceo/api/breeds/image/random",true);
+      xhr.send();
+    });
+  </script>
+</html>
